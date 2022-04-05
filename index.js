@@ -72,13 +72,15 @@ async function run() {
         // Check if title starts with a disallowed prefix
         prefixes = core.getInput('disallowed_prefixes');
         core.info(`Disallowed Prefixes: ${prefixes}`);
+        core.info(`Allowed Prefixes: ${prefixes}`);
         if (prefixes.length > 0 && prefixes.split(',').some((el) => validateTitlePrefix(title, el, prefixCaseSensitive))) {
             core.setFailed(`Pull Request title "${title}" matched with a disallowed prefix - ${prefixes}`);
             return
         }
 
-        const description = pullRequest.description;
+        const description = pullRequest.body;
         core.info(JSON.stringify(pullRequest));
+        core.info(`Pull Request Description: ${body}`);
         if(!(!!description)){
             core.setFailed(`The description of the Pull Request is empty`);
             return
