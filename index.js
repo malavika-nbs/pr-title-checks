@@ -77,6 +77,12 @@ async function run() {
             return
         }
 
+        const description = pullRequest.description;
+        if(!description){
+            core.setFailed(`The description of the Pull Request is empty`);
+            return
+        }
+
     } catch (error) {
         core.setFailed(error.message);
     }
