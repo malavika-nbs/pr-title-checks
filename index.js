@@ -78,7 +78,8 @@ async function run() {
         }
 
         const description = pullRequest.description;
-        core.info(`Pull Request description: "${description}"`);
+        const total = pullRequest;
+        core.info(`Pull Request: "${total}"`);
         if(!(!!description)){
             core.setFailed(`The description of the Pull Request is empty`);
             return
